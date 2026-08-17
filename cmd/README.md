@@ -103,13 +103,11 @@ a2a send <url> --context <context-id> "Related question"
 ```bash
 a2a get task <url> <id>
 a2a get task <url> <id> --history 10
-a2a get task <url> <id> --with-artifacts -o json
 ```
 
 | Flag | Description |
 |---|---|
 | `--history <n>` | Include up to `n` history messages. |
-| `--with-artifacts` | Include artifacts in the response. |
 
 ### `list tasks` - List Tasks
 
