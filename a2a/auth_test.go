@@ -51,6 +51,13 @@ func TestSecurityRequirementsOptionsUnmarshalJSON(t *testing.T) {
 			},
 		},
 		{
+			name: "protojson empty message",
+			json: `[{"schemes":{"apiKey":{}}}]`,
+			want: SecurityRequirementsOptions{
+				{"apiKey": nil},
+			},
+		},
+		{
 			name: "mixed protojson and legacy scopes",
 			json: `[{"schemes":{"oauth2":{"list":["openid"]},"apiKey":[]}}]`,
 			want: SecurityRequirementsOptions{
@@ -81,10 +88,6 @@ func TestSecurityRequirementsOptionsUnmarshalJSONRejectsInvalidScopesWrapper(t *
 		name string
 		json string
 	}{
-		{
-			name: "missing list field",
-			json: `[{"schemes":{"oauth2":{}}}]`,
-		},
 		{
 			name: "list is not an array",
 			json: `[{"schemes":{"oauth2":{"list":"openid"}}}]`,

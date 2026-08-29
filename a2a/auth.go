@@ -88,18 +88,12 @@ func (s *SecuritySchemeScopes) UnmarshalJSON(b []byte) error {
 	}
 
 	var wrapped struct {
-		List json.RawMessage `json:"list"`
+		List []string `json:"list"`
 	}
 	if err := json.Unmarshal(b, &wrapped); err != nil {
 		return err
 	}
-	if wrapped.List == nil {
-		return fmt.Errorf("security scheme scopes object is missing the list field")
-	}
-	if err := json.Unmarshal(wrapped.List, &scopes); err != nil {
-		return err
-	}
-	*s = scopes
+	*s = wrapped.List
 	return nil
 }
 
